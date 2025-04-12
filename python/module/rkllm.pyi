@@ -36,7 +36,6 @@ class RKLLMParam:
 
 class RKLLMInput:
     """Represents different types of input to the LLM."""
-
     pass  # This class doesn't have any directly accessible properties in Python
 
 class RKLLMWrapperBase:

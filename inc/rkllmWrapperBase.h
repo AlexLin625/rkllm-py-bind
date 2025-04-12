@@ -64,6 +64,8 @@ public:
       this->inferParam.prompt_cache_params = nullptr;
     }
 
+    this->inferParam.keep_history = this->keepHistory;
+
     int ret = rkllm_run(this->handle, &input, &this->inferParam, static_cast<void *>(this));
     return ret == 0;
   }
@@ -105,7 +107,7 @@ public:
   }
 
   bool setPromptTemplate(const std::string &systemPrompt, const std::string &userPromptPrefix,
-                          const std::string &userPromptSuffix)
+                         const std::string &userPromptSuffix)
   {
     if (this->handle == nullptr)
       return false;
@@ -119,6 +121,11 @@ public:
     return ret == 0;
   }
 
+  void setKeepChatHistory(bool val)
+  {
+    this->keepHistory = val;
+  }
+
 private:
   // 内部使用的句柄
   LLMHandle handle = nullptr;
@@ -129,6 +136,7 @@ private:
   /* *** 封装类设置 *** */
   // 推理模式
   bool isAsync = false;
+  bool keepHistory = false;
   RKLLMInferParam inferParam;
 
   // 提示词模板
@@ -148,7 +156,7 @@ private:
         .mode = RKLLM_INFER_GENERATE,
         .lora_params = NULL,
         .prompt_cache_params = NULL,
-        .keep_history = 0,
+        .keep_history = this->keepHistory,
     };
   }
 
