@@ -3,11 +3,9 @@ import sys
 sys.path.append("./build")
 import rkllm
 
-def test_rkllm():
-    model = "/home/pi/rkllm/llm-model-zoo/DeepSeek-R1-Distill-Qwen-7B_W8A8_RK3588.rkllm"
-
+def test_rkllm(model_path):
     llm_config = rkllm.rkllm_create_default_params()
-    llm_config.model_path = model
+    llm_config.model_path = model_path
     llm_config.max_context_len = 1024
     llm_config.max_new_tokens = 512
 
@@ -31,4 +29,9 @@ def test_rkllm():
 
 
 if __name__ == "__main__":
-    test_rkllm()
+    if len(sys.argv) != 2:
+        print("Usage: python example.py <model_path>")
+        sys.exit(1)
+
+    model_path = sys.argv[1]
+    test_rkllm(model_path)
