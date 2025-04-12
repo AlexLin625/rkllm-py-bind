@@ -31,7 +31,7 @@
 #### pip 部分
 
 1. **生成 Python 包**：
-   - 上述 CMake 配置会在 `build` 目录下生成 `dist` 文件夹，其中包含 `pyproject.toml` 文件。
+   - 上述 CMake 配置会在项目目录下生成 `dist` 文件夹，其中包含 `pyproject.toml` 文件。
 
 2. **安装 Python 包**：
    - 使用 pip 安装生成的包：

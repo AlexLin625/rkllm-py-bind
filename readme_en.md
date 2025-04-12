@@ -31,7 +31,7 @@
 #### pip Section
 
 1. **Generate Python Package**:
-   - The above CMake configuration will generate a `dist` folder under the `build` directory, which contains the `pyproject.toml` file.
+   - The above CMake configuration will generate a `dist` folder under the source code directory, which contains the `pyproject.toml` file.
 
 2. **Install Python Package**:
    - Use pip to install the generated package:
