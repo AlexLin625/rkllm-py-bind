@@ -37,7 +37,6 @@ public:
   bool init()
   {
     const int ret = rkllm_init(&this->handle, &this->params, RKLLMWrapperBase::staticInferCallback);
-    rkllm_set_chat_template(this->handle, "", "<|User|>", "<|Assistant|>");
     this->inferParam = this->getDefaultInferParams();
 
     return ret == 0;
@@ -105,6 +104,21 @@ public:
     return false;
   }
 
+  bool setPromptTemplate(const std::string &systemPrompt, const std::string &userPromptPrefix,
+                          const std::string &userPromptSuffix)
+  {
+    if (this->handle == nullptr)
+      return false;
+
+    this->systemPrompt = systemPrompt;
+    this->userPromptPrefix = userPromptPrefix;
+    this->userPromptSuffix = userPromptSuffix;
+
+    int ret = rkllm_set_chat_template(this->handle, this->systemPrompt.c_str(), this->userPromptPrefix.c_str(),
+                                      this->userPromptSuffix.c_str());
+    return ret == 0;
+  }
+
 private:
   // 内部使用的句柄
   LLMHandle handle = nullptr;
@@ -116,6 +130,11 @@ private:
   // 推理模式
   bool isAsync = false;
   RKLLMInferParam inferParam;
+
+  // 提示词模板
+  std::string systemPrompt;
+  std::string userPromptPrefix;
+  std::string userPromptSuffix;
 
   // 是否使用 Prmpt Cache
   bool isPromptCacheEnable = false;

@@ -7,7 +7,7 @@ name = "rkllm"
 version = "0.1.0"
 description = "RKLM bindings for Python"
 readme = "README.md"
-requires-python = "==3.8.*"
+requires-python = ">=3.8, <=3.12"
 
 [tool.setuptools]
 include-package-data = true

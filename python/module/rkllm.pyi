@@ -68,7 +68,7 @@ class RKLLMWrapperBase:
         """
         ...
     
-    def enable_prompt_cache(self, cache_path: str, params: Any) -> bool:
+    def enablePromptCache(self, cache_path: str, params: Any) -> bool:
         """Enable caching of prompts to improve performance for repeated queries.
         
         Args:
@@ -80,11 +80,24 @@ class RKLLMWrapperBase:
         """
         ...
     
-    def disable_prompt_cache(self) -> bool:
+    def disablePromptCache(self) -> bool:
         """Disable prompt caching.
         
         Returns:
             bool: True if cache was disabled successfully, False otherwise.
+        """
+        ...
+
+    def setPromptTemplate(self, systemPrompt: str, userPromptPrefix: str, userPromptSuffix: str) -> bool:
+        """Set the prompt template for the LLM.
+
+        Args:
+            systemPrompt: The system prompt template.
+            userPromptPrefix: The prefix for the user prompt.
+            userPromptSuffix: The suffix for the user prompt.
+
+        Returns:
+            bool: True if setting the prompt template was successful, False otherwise.
         """
         ...
     
@@ -103,6 +116,8 @@ class RKLLMWrapperBase:
     def onInferFinished(self) -> None:
         """Called when inference is completed. Must be implemented by subclasses."""
         ...
+
+    def set
 
 class RKLLMDataUtils:
     """Utility class for creating different types of inputs for RKLLM."""
