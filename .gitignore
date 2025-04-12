@@ -34,3 +34,6 @@
 # Cmake, clangd
 build
 .cache
+
+*.egg-info
+dist/rkllm/*
