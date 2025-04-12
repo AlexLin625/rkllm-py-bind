@@ -12,7 +12,9 @@ __all__ = [
 
 class RKLLM(RKLLMWrapperBase):
     """
-    infer() returns after inference is finished.
+    Wrapper class for RKLLM.
+
+    You need to implement onInfer... hooks.
     """
 
     def __init__(self, param: RKLLMParam) -> None:
@@ -26,6 +28,9 @@ class RKLLM(RKLLMWrapperBase):
     def infer(self, prompt: str) -> bool: ...
 
     def infer(self, prompt: str | RKLLMInput) -> bool:
+        """
+        Start inference.
+        """
         _prompt: None | RKLLMInput = None
 
         if isinstance(prompt, str):
@@ -40,7 +45,7 @@ class RKLLM(RKLLMWrapperBase):
 
 class RKLLMAsync(RKLLMWrapperBase):
     """
-    infer() returns immediately and resolves the result later.
+    Wrapper class for RKLLM, with async support.
     """
 
     _isRunning: bool
@@ -60,6 +65,9 @@ class RKLLMAsync(RKLLMWrapperBase):
         return self._isRunning
 
     def infer(self, prompt: RKLLMInput) -> bool:
+        """
+        DO NOT USE.
+        """
         raise NotImplementedError("Use inferAsync() for async inference.")
 
     @overload
@@ -69,6 +77,16 @@ class RKLLMAsync(RKLLMWrapperBase):
     def inferAsync(self, prompt: str) -> asyncio.Future[str]: ...
 
     def inferAsync(self, prompt: RKLLMInput | str) -> asyncio.Future[str]:
+        """
+        Start async inference.
+
+        Params:
+            prompt: The prompt to use for inference. Can be a string or RKLLMInput.
+
+        Returns:
+            A Future object that will be resolved with the inference result.
+        """
+
         _prompt: None | RKLLMInput = None
 
         if isinstance(prompt, str):
