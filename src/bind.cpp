@@ -91,6 +91,7 @@ PYBIND11_MODULE(rkllm, m)
       .def("enablePromptCache", &RKLLMWrapperBase::enablePromptCache)
       .def("disablePromptCache", &RKLLMWrapperBase::disablePromptCache)
       .def("setPromptTemplate", &RKLLMWrapperBase::setPromptTemplate)
+      .def("setKeepChatHistory", &RKLLMWrapperBase::setKeepChatHistory)
       .def("onInferError", &RKLLMWrapperBase::onInferError)
       .def("onInferToken", &RKLLMWrapperBase::onInferToken)
       .def("onInferFinished", &RKLLMWrapperBase::onInferFinished);

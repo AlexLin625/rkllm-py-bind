@@ -105,6 +105,13 @@ class RKLLMWrapperBase:
         """
         ...
 
+    def setKeepChatHistory(
+        self, val: bool
+    ) -> None:
+        """
+        Set whether to keep chat context across infer() calls.
+        """
+
     def onInferError(self) -> None:
         """Called when an inference error occurs. Must be implemented by subclasses."""
         ...
