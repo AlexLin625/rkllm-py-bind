@@ -36,6 +36,7 @@ class RKLLMParam:
 
 class RKLLMInput:
     """Represents different types of input to the LLM."""
+
     pass  # This class doesn't have any directly accessible properties in Python
 
 class RKLLMWrapperBase:
@@ -104,12 +105,22 @@ class RKLLMWrapperBase:
         """
         ...
 
-    def setKeepChatHistory(
-        self, val: bool
-    ) -> None:
+    def setKeepChatHistory(self, val: bool) -> None:
         """
         Set whether to keep chat context across infer() calls.
         """
+
+    def clearKVCache(self, keepSystemPrompt: bool) -> bool:
+        """
+        Clear the KV cache.
+
+        Args:
+            keepSystemPrompt: Whether to keep the system prompt in the cache.
+
+        Returns:
+            bool: True if clearing the cache was successful, False otherwise.
+        """
+        ...
 
     def onInferError(self) -> None:
         """Called when an inference error occurs. Must be implemented by subclasses."""

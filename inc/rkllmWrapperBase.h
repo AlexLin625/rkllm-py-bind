@@ -126,6 +126,13 @@ public:
     this->keepHistory = val;
   }
 
+  bool clearKVCache(bool keepSystemPrompt)
+  {
+    if (!this->handle)
+      return false;
+    return rkllm_clear_kv_cache(this->handle, keepSystemPrompt) == 0;
+  }
+
 private:
   // 内部使用的句柄
   LLMHandle handle = nullptr;
