@@ -34,4 +34,3 @@
 # Cmake, clangd
 build
 .cache
-dist

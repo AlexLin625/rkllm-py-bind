@@ -1,6 +1,4 @@
 import sys
-
-sys.path.append("./build")
 import rkllm
 
 def test_rkllm(model_path):
